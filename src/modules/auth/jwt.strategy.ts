@@ -11,7 +11,6 @@ export interface JwtPayload {
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy){
-    // Inject both the UsersServices and the new RevokedTokenService.
     constructor(
         private readonly userServices : UsersServices,
         private readonly revokedTokenService: RevokedTokenService
