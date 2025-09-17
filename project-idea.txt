@@ -1,0 +1,49 @@
+Project: TaskFlow - A Collaborative Task & Project Management Platform
+Overview
+TaskFlow is a robust, full-featured project and task management platform designed for teams. It allows users to create, assign, and track tasks within projects, communicate with team members, and visualize project progress. This project is ideal for showcasing NestJS's capabilities in handling complex business logic, real-time updates, and a modular architecture.
+
+Core Features
+1. User & Authentication
+User registration and secure login (JWT authentication).
+
+Profile management (name, email, avatar).
+
+Password reset and update.
+
+2. Project Management
+Create, read, update, and delete projects.
+
+Invite and manage team members with different roles (e.g., Owner, Member).
+
+Set project status (e.g., In Progress, Completed, On Hold).
+
+3. Task Management
+Create, read, update, and delete tasks within a project.
+
+Assign tasks to one or more team members.
+
+Set task priority (High, Medium, Low) and due dates.
+
+Update task status (e.g., To Do, In Progress, Blocked, Done).
+
+Add comments and attachments to tasks.
+
+4. Real-time Communication & Notifications
+Real-time updates for task and project changes using WebSockets.
+
+Notifications for task assignments, due dates, and comments.
+
+Technology Stack
+Backend Framework: NestJS
+
+Language: TypeScript
+
+Database: PostgreSQL (with TypeORM)
+
+Authentication: Passport.js with JWT Strategy
+
+Real-time: WebSockets (@nestjs/platform-socket.io)
+
+Validation: class-validator and class-transformer
+
+Deployment: Docker
