@@ -19,7 +19,7 @@ export class AuthServices{
     private async tokenGenerator(payload : JwtPayload){
         return await this.jwtService.signAsync(payload)
     }
-     // This method is for Passport strategies to validate user credentials.
+    
     async validateUser(email: string, pass: string): Promise<any> {
         const user = await this.userServices.getUserByEmail(email);
 
@@ -30,9 +30,7 @@ export class AuthServices{
         return null;
     }
 
-    // Handles user registration.
-    // src/modules/auth/auth.service.ts
-// ...
+
 async register(body: CreateUserDto) {
     const { v4: uuid } = await import('uuid');
     const isFound = await this.userServices.getUserByEmail(body.email);
@@ -54,7 +52,6 @@ async register(body: CreateUserDto) {
     const token = await this.tokenGenerator(payload);
 
     // Return the user and the newly generated token.
-    // Make sure to return the newUser object, not the original 'user'
     return { user: newUser, token };
 }
 
@@ -63,12 +60,10 @@ async register(body: CreateUserDto) {
         const user = await this.userServices.getUserByEmail(email);
 
         if (!user) {
-            // Use a specific HTTP exception for a better response.
             throw new NotFoundException('There is no user with this email.');
         }
 
         if (!(await bcrypt.compare(password, user.password))) {
-            // Use a specific HTTP exception for a better response.
             throw new UnauthorizedException('Wrong password');
         }
 
@@ -88,7 +83,6 @@ async register(body: CreateUserDto) {
                 throw new UnauthorizedException('Token has been revoked');
             }
 
-            // The rest of your logic...
             const user = await this.userServices.getUserById(payload.sub);
             if (!user) throw new UnauthorizedException('User Not Found');
 
@@ -98,9 +92,8 @@ async register(body: CreateUserDto) {
             return { token: newToken };
         } catch (err) {
             if (err instanceof UnauthorizedException) {
-                throw err; // Re-throw the specific revocation error
+                throw err; 
             }
-            // Catch all other errors (e.g., token expired, invalid signature, missing claims)
             throw new UnauthorizedException('Invalid or Expired Token');
         }
     }
@@ -114,8 +107,6 @@ async register(body: CreateUserDto) {
             
             return { message: 'Successfully logged out.' };
         } catch (error) {
-            // We return a success message regardless of the token's validity for security reasons.
-            // This prevents a malicious actor from discovering if a token is valid through the response.
             return { message: 'Successfully logged out.' };
         }
     }
