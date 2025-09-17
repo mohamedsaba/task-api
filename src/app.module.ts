@@ -16,7 +16,7 @@ import { TaskModule } from './modules/tasks/tasks.module';
       host : 'localhost' , 
       port : 3306 , 
       username : 'root' , 
-      password : 'Ms@932006' ,
+      password : '' ,
       database : 'TaskApi' , 
       entities : [UserEntity , ProjectEntity , TaskEntity] ,
       synchronize : false
